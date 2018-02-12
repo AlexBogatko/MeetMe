@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MeetMe</string>
+
+    <!--Login-->
+    <string name="login_dummy">Login MeetMe</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <!--Login Validation-->
+    <string name="invalid_email_password">Please provide a valid email and password.</string>
+
+</resources>
