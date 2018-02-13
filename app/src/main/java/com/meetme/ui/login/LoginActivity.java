@@ -1,20 +1,4 @@
-/*
- *  Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      https://mindorks.com/license/apache-v2
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License
- */
-
-package com.meetme.login;
+package com.meetme.ui.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +8,8 @@ import android.widget.Toast;
 import com.meetme.BR;
 import com.meetme.R;
 import com.meetme.databinding.ActivityLoginBinding;
+import com.meetme.ui.base.BaseActivity;
+import com.meetme.ui.introduction.IntroductionActivity;
 
 import javax.inject.Inject;
 
@@ -48,7 +34,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         super.onCreate(savedInstanceState);
         mActivityLoginBinding = getViewDataBinding();
         mLoginViewModel.setNavigator(this);
-
     }
 
     @Override
@@ -66,6 +51,13 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     @Override
     public void handleError(Throwable throwable) {
         // handle error
+    }
+
+    @Override
+    public void openIntroductionActivity() {
+        Intent intent = IntroductionActivity.getStartIntent(LoginActivity.this);
+        startActivity(intent);
+        finish();
     }
 
     @Override

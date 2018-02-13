@@ -1,7 +1,7 @@
 package com.meetme.di;
 
-import com.meetme.login.LoginActivity;
-import com.meetme.login.LoginActivityModule;
+import com.meetme.ui.login.LoginActivity;
+import com.meetme.ui.login.LoginActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

@@ -17,7 +17,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.meetme.login.LoginActivity">
+    tools:context="com.meetme.ui.login.LoginActivity">
 
     <data>
 
@@ -25,7 +25,7 @@
 
         <variable
             name="viewModel"
-            type="com.meetme.login.LoginViewModel" />
+            type="com.meetme.ui.login.LoginViewModel" />
 
     </data>
 
