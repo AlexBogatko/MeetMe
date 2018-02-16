@@ -2,6 +2,7 @@ package com.meetme.ui.introduction;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -52,10 +53,12 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
         if (getSupportActionBar() != null){
             getSupportActionBar().hide();
         }
-
+        mActivityIntroductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction);
+        mActivityIntroductionBinding.setVariable(getBindingVariable(), mIntroductionViewModel);
+        mActivityIntroductionBinding.executePendingBindings();
 
         mIntroductionPagerAdapter.setCount(3);
-        mActivityIntroductionBinding.introductionViewPager.setAdapter(mIntroductionPagerAdapter);
+        mActivityIntroductionBinding.introductionViewPager.setAdapter(mIntroductionPagerAdapter);;
     }
 
     @Override
@@ -82,6 +85,4 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
     }
-
-
 }
