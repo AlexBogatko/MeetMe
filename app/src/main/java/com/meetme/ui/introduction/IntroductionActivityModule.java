@@ -19,4 +19,8 @@ public class IntroductionActivityModule {
         return new IntroductionViewModel(dataManager, schedulerProvider);
     }
 
+    @Provides
+    IntroductionPagerAdapter provideIntroductionPagerAdapter(IntroductionActivity activity) {
+        return new IntroductionPagerAdapter(activity.getSupportFragmentManager());
+    }
 }

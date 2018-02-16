@@ -5,4 +5,6 @@ package com.meetme.ui.introduction;
  */
 
 public interface IntroductionNavigator {
+
+    void openNextActivity();
 }

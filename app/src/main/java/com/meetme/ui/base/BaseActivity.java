@@ -25,7 +25,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  * Created by amitshekhar on 07/07/17.
  */
 
-public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity implements BaseFragment.Callback {
 
     // TODO
     // this can probably depend on isLoading variable of BaseViewModel,
@@ -67,15 +67,15 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
                 checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-//    @Override
-//    public void onFragmentAttached() {
-//
-//    }
-//
-//    @Override
-//    public void onFragmentDetached(String tag) {
-//
-//    }
+    @Override
+    public void onFragmentAttached() {
+
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
+
+    }
 
     public void hideKeyboard() {
         View view = this.getCurrentFocus();
