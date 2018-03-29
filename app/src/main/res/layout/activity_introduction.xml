@@ -18,15 +18,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/asdsadasd"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/introductionViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:onPageChangeListener="@{handlers}"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/introductionViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/leftBottomButton"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:onClick="@{() -> viewModel.leftBottomClicked()}"/>
+
+        <TextView
+            android:id="@+id/rightBottomButton"
+            android:text="next"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:onClick="@{() -> viewModel.rightBottomClicked()}"/>
 
     </FrameLayout>
 

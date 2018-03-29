@@ -3,9 +3,11 @@ package com.meetme.ui.introduction;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.databinding.PropertyChangeRegistry;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 
 import com.meetme.BR;
 import com.meetme.R;
@@ -23,7 +25,7 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 
 public class IntroductionActivity extends BaseActivity<ActivityIntroductionBinding, IntroductionViewModel> implements HasSupportFragmentInjector,
-        IntroductionNavigator{
+        IntroductionNavigator {
 
     @Inject
     IntroductionPagerAdapter mIntroductionPagerAdapter;
@@ -35,6 +37,7 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
+    private transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
     public static Intent getStartIntent(Context context) {
         Intent intent = new Intent(context, IntroductionActivity.class);
@@ -49,8 +52,8 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
         setUp();
     }
 
-    private void setUp(){
-        if (getSupportActionBar() != null){
+    private void setUp() {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
         mActivityIntroductionBinding = DataBindingUtil.setContentView(this, R.layout.activity_introduction);
@@ -58,13 +61,33 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
         mActivityIntroductionBinding.executePendingBindings();
 
         mIntroductionPagerAdapter.setCount(3);
-        mActivityIntroductionBinding.introductionViewPager.setAdapter(mIntroductionPagerAdapter);;
+        mActivityIntroductionBinding.introductionViewPager.setAdapter(mIntroductionPagerAdapter);
+        mActivityIntroductionBinding.introductionViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                mActivityIntroductionBinding.leftBottomButton.setText("prev");
+                mActivityIntroductionBinding.rightBottomButton.setText("next");
+
+                if (position == 0) {
+                    mActivityIntroductionBinding.leftBottomButton.setText("");
+                } else if (position == 2) {
+                    mActivityIntroductionBinding.rightBottomButton.setText("ready");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-    @Override
-    public void openNextActivity() {
-
-    }
 
     @Override
     public IntroductionViewModel getViewModel() {
@@ -84,5 +107,20 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    public void openNextActivity() {
+
+    }
+
+    @Override
+    public void setIsLoading() {
+
+    }
+
+    @Override
+    public void setNotLoading() {
+
     }
 }

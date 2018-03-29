@@ -37,47 +37,22 @@ public class IntroductionFragment extends BaseFragment<FragmentIntroductionBindi
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        mViewModelFactory = new ViewModelProviderFactory<>(introductionFragmentViewModel);
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFragmentIntroductionBinding = getViewDataBinding();
         setUp();
     }
 
-    private void setUp(){
-        switch (getArguments().getInt("position")){
+    private void setUp() {
+        switch (getArguments().getInt("position")) {
             case 0:
-                try {
-                    mFragmentIntroductionBinding.button.setText("first page");
-                    mFragmentIntroductionBinding.textView.setText("next");
-                } catch (Exception e){
-
-                }
+                mFragmentIntroductionBinding.button.setText("first page");
                 break;
             case 1:
-
-                try {
-                    mFragmentIntroductionBinding.button.setText("second page");
-                    mFragmentIntroductionBinding.textView.setText("next");
-                } catch (Exception e){
-
-                }
+                mFragmentIntroductionBinding.button.setText("second page");
                 break;
             case 2:
-
-                try {
-                    mFragmentIntroductionBinding.button.setText("third page");
-                    mFragmentIntroductionBinding.textView.setText("finish");
-                } catch (Exception e){
-
-                }
+                mFragmentIntroductionBinding.button.setText("third page");
                 break;
         }
     }

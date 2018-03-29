@@ -1,6 +1,10 @@
 package com.meetme.ui.introduction;
 
+import android.databinding.BindingAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.meetme.DataManager;
 import com.meetme.ui.base.BaseViewModel;
@@ -16,8 +20,15 @@ public class IntroductionViewModel extends BaseViewModel<IntroductionNavigator> 
         super(dataManager, schedulerProvider);
     }
 
-    public void textViewClicked(){
-//        Toast.makeText(get, "asdsa", Toast.LENGTH_SHORT).show();
-        Log.i("ASD", "asdasdasdasd");
+    public void onClick(){
+
+    }
+
+    public void leftBottomClicked(){
+
+    }
+
+    public void rightBottomClicked(){
+
     }
 }
