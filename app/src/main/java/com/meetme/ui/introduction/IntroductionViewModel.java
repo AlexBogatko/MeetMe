@@ -1,11 +1,5 @@
 package com.meetme.ui.introduction;
 
-import android.databinding.BindingAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-
 import com.meetme.DataManager;
 import com.meetme.ui.base.BaseViewModel;
 import com.meetme.utils.rx.SchedulerProvider;
@@ -15,6 +9,8 @@ import com.meetme.utils.rx.SchedulerProvider;
  */
 
 public class IntroductionViewModel extends BaseViewModel<IntroductionNavigator> {
+
+    public int onPageSelected;
 
     public IntroductionViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
@@ -29,6 +25,6 @@ public class IntroductionViewModel extends BaseViewModel<IntroductionNavigator> 
     }
 
     public void rightBottomClicked(){
-
+        getNavigator().requestPermission();
     }
 }

@@ -1,4 +1,4 @@
-package com.meetme.ui.introduction;
+package com.meetme.ui.introduction.fragments;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

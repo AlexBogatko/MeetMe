@@ -11,4 +11,6 @@ public interface IntroductionNavigator {
     void setIsLoading();
 
     void setNotLoading();
+
+    void requestPermission();
 }

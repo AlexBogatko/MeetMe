@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.meetme.ui.introduction.fragments.IntroductionFragment;
+
 /**
  * Created by user on 15.02.2018.
  */

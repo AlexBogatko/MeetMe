@@ -1,18 +1,26 @@
 package com.meetme.ui.introduction;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.databinding.PropertyChangeRegistry;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Pair;
 
 import com.meetme.BR;
 import com.meetme.R;
 import com.meetme.databinding.ActivityIntroductionBinding;
 import com.meetme.ui.base.BaseActivity;
+import com.meetme.ui.introduction.fragments.IntroductionFragment;
+import com.meetme.ui.login.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -25,7 +33,11 @@ import dagger.android.support.HasSupportFragmentInjector;
  */
 
 public class IntroductionActivity extends BaseActivity<ActivityIntroductionBinding, IntroductionViewModel> implements HasSupportFragmentInjector,
-        IntroductionNavigator {
+        IntroductionNavigator, IntroductionFragment.OnFragmentToActivity {
+
+    private final static int LOCATION_PERMISSION = 101;
+    private final static int STORAGE_PERMISSION = 102;
+    private final static int CAMERA_PERMISSION = 103;
 
     @Inject
     IntroductionPagerAdapter mIntroductionPagerAdapter;
@@ -62,32 +74,19 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
 
         mIntroductionPagerAdapter.setCount(3);
         mActivityIntroductionBinding.introductionViewPager.setAdapter(mIntroductionPagerAdapter);
-        mActivityIntroductionBinding.introductionViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-            }
-
+        mActivityIntroductionBinding.introductionViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
 
-                mActivityIntroductionBinding.leftBottomButton.setText("prev");
-                mActivityIntroductionBinding.rightBottomButton.setText("next");
-
-                if (position == 0) {
-                    mActivityIntroductionBinding.leftBottomButton.setText("");
-                } else if (position == 2) {
+                if (position == 2) {
                     mActivityIntroductionBinding.rightBottomButton.setText("ready");
+                } else {
+                    mActivityIntroductionBinding.rightBottomButton.setText("next");
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
             }
         });
     }
-
 
     @Override
     public IntroductionViewModel getViewModel() {
@@ -111,7 +110,7 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
 
     @Override
     public void openNextActivity() {
-
+        startActivity(LoginActivity.getStartIntent(this));
     }
 
     @Override
@@ -122,5 +121,67 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
     @Override
     public void setNotLoading() {
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if ((requestCode == LOCATION_PERMISSION
+                || requestCode == STORAGE_PERMISSION
+                || requestCode == CAMERA_PERMISSION) && grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            openNextFragment();
+        }
+    }
+
+    private String[] arrayOf(String... values) {
+        return values;
+    }
+
+    @Override
+    public void requestPermission(){
+        Pair<String[], Integer> permissionRequestCode = getRequestPermission();
+
+        String[] permissions = permissionRequestCode.first;
+        int requestCode = permissionRequestCode.second;
+
+        if (ContextCompat.checkSelfPermission(this, permissions[0])
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // No explanation needed, we can request the permission.
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(permissions),
+                    requestCode);
+        } else {
+            openNextFragment();
+        }
+    }
+
+    private Pair<String[], Integer> getRequestPermission(){
+        switch (mActivityIntroductionBinding.introductionViewPager.getCurrentItem()){
+            case 0:
+                return new Pair<>(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION);
+            case 1:
+                return new Pair<>(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION);
+            case 2:
+                return new Pair<>(new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void openNextFragment() {
+        int currItem = mActivityIntroductionBinding.introductionViewPager.getCurrentItem();
+
+        if (currItem < 2) {
+            mActivityIntroductionBinding.introductionViewPager.setCurrentItem(currItem + 1);
+        } else {
+            openNextActivity();
+        }
     }
 }

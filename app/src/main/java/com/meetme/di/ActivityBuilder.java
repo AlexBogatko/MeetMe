@@ -2,7 +2,7 @@ package com.meetme.di;
 
 import com.meetme.ui.introduction.IntroductionActivity;
 import com.meetme.ui.introduction.IntroductionActivityModule;
-import com.meetme.ui.introduction.IntroductionFragmentProvider;
+import com.meetme.ui.introduction.fragments.IntroductionFragmentProvider;
 import com.meetme.ui.login.LoginActivity;
 import com.meetme.ui.login.LoginActivityModule;
 

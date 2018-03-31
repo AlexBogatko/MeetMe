@@ -3,14 +3,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.meetme.ui.introduction.IntroductionFragment">
+    tools:context="com.meetme.ui.introduction.fragments.IntroductionFragment">
 
     <data>
         <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="com.meetme.ui.introduction.IntroductionFragmentViewModel" />
+            type="com.meetme.ui.introduction.fragments.IntroductionFragmentViewModel" />
 
     </data>
 

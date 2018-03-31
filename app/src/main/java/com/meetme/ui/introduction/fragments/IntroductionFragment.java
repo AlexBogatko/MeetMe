@@ -1,17 +1,16 @@
-package com.meetme.ui.introduction;
+package com.meetme.ui.introduction.fragments;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.meetme.BR;
 import com.meetme.R;
-import com.meetme.ViewModelProviderFactory;
 import com.meetme.databinding.FragmentIntroductionBinding;
 import com.meetme.ui.base.BaseFragment;
-import com.meetme.ui.base.BaseViewModel;
 
 import javax.inject.Inject;
 
@@ -20,6 +19,10 @@ import javax.inject.Inject;
  */
 
 public class IntroductionFragment extends BaseFragment<FragmentIntroductionBinding, IntroductionFragmentViewModel> {
+
+
+    private int position = 0;
+    private OnFragmentToActivity onFragmentToActivityListener;
 
     @Inject
     ViewModelProvider.Factory mViewModelFactory;
@@ -43,8 +46,17 @@ public class IntroductionFragment extends BaseFragment<FragmentIntroductionBindi
         setUp();
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        onFragmentToActivityListener = (OnFragmentToActivity) context;
+    }
+
     private void setUp() {
-        switch (getArguments().getInt("position")) {
+        position = getArguments().getInt("position");
+
+        switch (position) {
             case 0:
                 mFragmentIntroductionBinding.button.setText("first page");
                 break;
@@ -71,5 +83,9 @@ public class IntroductionFragment extends BaseFragment<FragmentIntroductionBindi
     @Override
     public int getLayoutId() {
         return R.layout.fragment_introduction;
+    }
+
+    public interface OnFragmentToActivity {
+        void openNextFragment();
     }
 }

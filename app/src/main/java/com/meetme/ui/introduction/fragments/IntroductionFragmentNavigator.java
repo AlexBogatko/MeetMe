@@ -1,4 +1,4 @@
-package com.meetme.ui.introduction;
+package com.meetme.ui.introduction.fragments;
 
 /**
  * Created by user on 16.02.2018.
