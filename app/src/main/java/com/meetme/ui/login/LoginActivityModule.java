@@ -1,6 +1,6 @@
 package com.meetme.ui.login;
 
-import com.meetme.DataManager;
+import com.meetme.data.DataManager;
 import com.meetme.utils.rx.SchedulerProvider;
 
 import dagger.Module;

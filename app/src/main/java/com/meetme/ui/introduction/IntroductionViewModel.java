@@ -1,6 +1,6 @@
 package com.meetme.ui.introduction;
 
-import com.meetme.DataManager;
+import com.meetme.data.DataManager;
 import com.meetme.ui.base.BaseViewModel;
 import com.meetme.utils.rx.SchedulerProvider;
 

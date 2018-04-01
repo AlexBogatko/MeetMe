@@ -1,9 +1,15 @@
 package com.meetme.ui.login;
 
-import com.meetme.DataManager;
+import android.widget.Toast;
+
+import com.meetme.data.DataManager;
+import com.meetme.data.model.api.LoginRequest;
+import com.meetme.data.model.api.LoginResponse;
 import com.meetme.ui.base.BaseViewModel;
 import com.meetme.utils.CommonUtils;
 import com.meetme.utils.rx.SchedulerProvider;
+
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by amitshekhar on 08/07/17.
@@ -78,30 +84,31 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
 
     public void login(String email, String password) {
         setIsLoading(true);
-//        getCompositeDisposable().add(getDataManager()
-//                .doServerLoginApiCall(new LoginRequest.ServerLoginRequest(email, password))
-//                .subscribeOn(getSchedulerProvider().io())
-//                .observeOn(getSchedulerProvider().ui())
-//                .subscribe(new Consumer<LoginResponse>() {
-//                    @Override
-//                    public void accept(LoginResponse response) throws Exception {
-//                        getDataManager().updateUserInfo(
-//                                response.getAccessToken(),
-//                                response.getUserId(),
-//                                DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
-//                                response.getUserName(),
-//                                response.getUserEmail(),
-//                                response.getGoogleProfilePicUrl());
-//                        setIsLoading(false);
-//                        getNavigator().openMainActivity();
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        setIsLoading(false);
-//                        getNavigator().handleError(throwable);
-//                    }
-//                }));
+        getCompositeDisposable().add(getDataManager()
+                .doServerLoginApiCall(new LoginRequest.ServerLoginRequest(email, password))
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(new Consumer<LoginResponse>() {
+                    @Override
+                    public void accept(LoginResponse response) throws Exception {
+                        getDataManager().updateUserInfo(
+                                response.getAccessToken(),
+                                response.getUserId(),
+                                DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
+                                response.getUserName(),
+                                response.getUserEmail(),
+                                response.getGoogleProfilePicUrl());
+                        setIsLoading(false);
+                        getNavigator().openMainActivity();
+//                        Toast.makeText(LoginViewModel.this, "you successfully loged in", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        setIsLoading(false);
+                        getNavigator().handleError(throwable);
+                    }
+                }));
     }
 
     public boolean isEmailAndPasswordValid(String email, String password) {

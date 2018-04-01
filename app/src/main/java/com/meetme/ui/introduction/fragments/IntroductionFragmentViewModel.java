@@ -1,6 +1,6 @@
 package com.meetme.ui.introduction.fragments;
 
-import com.meetme.DataManager;
+import com.meetme.data.DataManager;
 import com.meetme.ui.base.BaseViewModel;
 import com.meetme.ui.introduction.IntroductionNavigator;
 import com.meetme.utils.rx.SchedulerProvider;

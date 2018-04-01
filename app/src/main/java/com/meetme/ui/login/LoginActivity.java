@@ -43,6 +43,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
     @Override
     public void openMainActivity() {
+        startActivity(IntroductionActivity.getStartIntent(this));
 //        Intent intent = MainActivity.getStartIntent(LoginActivity.this);
 //        startActivity(intent);
 //        finish();

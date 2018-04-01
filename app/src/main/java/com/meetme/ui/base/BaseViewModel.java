@@ -3,7 +3,7 @@ package com.meetme.ui.base;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.ObservableBoolean;
 
-import com.meetme.DataManager;
+import com.meetme.data.DataManager;
 import com.meetme.utils.rx.SchedulerProvider;
 
 import io.reactivex.disposables.CompositeDisposable;

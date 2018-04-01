@@ -2,7 +2,7 @@ package com.meetme.ui.introduction.fragments;
 
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.meetme.DataManager;
+import com.meetme.data.DataManager;
 import com.meetme.ViewModelProviderFactory;
 import com.meetme.utils.rx.SchedulerProvider;
 
