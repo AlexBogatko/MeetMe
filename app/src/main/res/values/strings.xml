@@ -9,5 +9,6 @@
 
     <!--Login Validation-->
     <string name="invalid_email_password">Please provide a valid email and password.</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

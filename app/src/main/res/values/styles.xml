@@ -12,7 +12,7 @@
         <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Bold.ttf</item>
     </style>
 
-    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/gray</item>
     </style>
 
