@@ -21,10 +21,6 @@ import com.meetme.utils.NetworkUtils;
 import dagger.android.AndroidInjection;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/**
- * Created by amitshekhar on 07/07/17.
- */
-
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity implements BaseFragment.Callback {
 
     // TODO

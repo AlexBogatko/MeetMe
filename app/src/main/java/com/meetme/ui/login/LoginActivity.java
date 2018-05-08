@@ -25,8 +25,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     ActivityLoginBinding mActivityLoginBinding;
 
     public static Intent getStartIntent(Context context) {
-        Intent intent = new Intent(context, LoginActivity.class);
-        return intent;
+        return new Intent(context, LoginActivity.class);
     }
 
     @Override

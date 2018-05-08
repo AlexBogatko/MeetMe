@@ -48,6 +48,7 @@ dependencies {
 
     // database
     implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabase"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomDatabase"
 
     // font
@@ -93,6 +94,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.lifecycle"
 
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
 }
 
 configurations.all {

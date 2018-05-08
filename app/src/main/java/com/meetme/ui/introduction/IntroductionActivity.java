@@ -19,8 +19,8 @@ import com.meetme.BR;
 import com.meetme.R;
 import com.meetme.databinding.ActivityIntroductionBinding;
 import com.meetme.ui.base.BaseActivity;
+import com.meetme.ui.closestpeople.ClosestMapActivity;
 import com.meetme.ui.introduction.fragments.IntroductionFragment;
-import com.meetme.ui.login.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -110,7 +110,7 @@ public class IntroductionActivity extends BaseActivity<ActivityIntroductionBindi
 
     @Override
     public void openNextActivity() {
-        startActivity(LoginActivity.getStartIntent(this));
+        startActivity(ClosestMapActivity.getStartIntent(this));
     }
 
     @Override

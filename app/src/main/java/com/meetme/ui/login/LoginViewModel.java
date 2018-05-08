@@ -1,7 +1,5 @@
 package com.meetme.ui.login;
 
-import android.widget.Toast;
-
 import com.meetme.data.DataManager;
 import com.meetme.data.model.api.LoginRequest;
 import com.meetme.data.model.api.LoginResponse;
@@ -10,10 +8,6 @@ import com.meetme.utils.CommonUtils;
 import com.meetme.utils.rx.SchedulerProvider;
 
 import io.reactivex.functions.Consumer;
-
-/**
- * Created by amitshekhar on 08/07/17.
- */
 
 public class LoginViewModel extends BaseViewModel<LoginNavigator> {
 
